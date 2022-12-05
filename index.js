@@ -22,22 +22,20 @@ const challenge2 = () => {
 	const calories = fs.readFileSync(path.join(__dirname, 'inputs', 'calories.txt'), 'utf-8').split('\r\n');
 	const { elfCal, top3Elfs } = calories.reduce(({ elfCal, top3Elfs }, line) => {
 		if (line === '') {
-			if (top3Elfs[2] < elfCal) {
-				top3Elfs.pop();
-				top3Elfs.push(elfCal);
-				top3Elfs.sort()
+			if (top3Elfs[0] < elfCal) {
+				top3Elfs[0] = elfCal;
+				top3Elfs.sort();
 			}
 			return { elfCal: 0, top3Elfs }
 		}
 		return { elfCal: elfCal + Number.parseInt(line), top3Elfs }
 	}
 		, { elfCal: 0, top3Elfs: [0, 0, 0] })
-	if (top3Elfs[2] < elfCal) {
-		top3Elfs.pop();
-		top3Elfs.push(elfCal);
-		top3Elfs.sort()
+	if (top3Elfs[0] < elfCal) {
+		top3Elfs[0] = elfCal;
+		top3Elfs.sort();
 	}
-	return top3Elfs
+	return top3Elfs.reduce((acc, x) => acc + x, 0)
 }
 
 console.log(challenge2());
