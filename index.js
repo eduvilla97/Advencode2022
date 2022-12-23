@@ -1,4 +1,4 @@
-const { part1, part2 } = require('./challenges/day4');
+const { part1, part2 } = require('./challenges/day5');
 
 const fs = require('fs');
 
